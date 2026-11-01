@@ -1,0 +1,374 @@
+/* =============================================================
+   UNIDOWNLOADER - STYLESHEET
+   ============================================================= */
+
+#mercatorum-downloader-box {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2147483647;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: #f1f5f9;
+  background: rgba(15, 23, 42, 0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+  box-shadow: 0 12px 35px -5px rgba(0, 0, 0, 0.65), 0 0 1px 1px rgba(255, 255, 255, 0.1);
+  width: 390px;
+  max-width: calc(100vw - 24px);
+  max-height: calc(100vh - 24px);
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-radius 0.25s ease, top 0.25s cubic-bezier(0.4, 0, 0.2, 1), left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#mercatorum-downloader-box.minimized {
+  width: auto;
+  max-height: none;
+  border-radius: 28px;
+}
+
+#mercatorum-downloader-box.minimized .m-body {
+  display: none;
+}
+
+#mercatorum-downloader-box.dragging {
+  transition: none !important;
+  user-select: none !important;
+}
+
+#mercatorum-downloader-box.dragging .m-header {
+  cursor: grabbing !important;
+  cursor: -webkit-grabbing !important;
+}
+
+.m-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: grab;
+  cursor: -webkit-grab;
+  user-select: none;
+  transition: background 0.15s ease;
+}
+
+.m-header:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#mercatorum-downloader-box.minimized .m-header {
+  border-bottom: none;
+  padding: 8px 16px;
+}
+
+#mercatorum-downloader-box.minimized:hover {
+  box-shadow: 0 12px 35px -5px rgba(0, 0, 0, 0.8), 0 0 12px rgba(163, 51, 39, 0.45);
+}
+
+/* Titolo UniDownloader Bianco */
+.m-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.m-header:hover .m-title {
+  color: #f1f5f9;
+}
+
+.m-title svg {
+  width: 18px;
+  height: 18px;
+  fill: #ffffff;
+}
+
+.m-body {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  overflow-y: auto;
+  max-height: calc(100vh - 75px);
+  box-sizing: border-box;
+}
+
+.m-folder-box {
+  background: rgba(0, 0, 0, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 7px 10px;
+}
+
+.m-folder-label {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.m-folder-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #e2e8f0;
+  font-size: 12px;
+  font-weight: 500;
+  outline: none;
+}
+
+.m-folder-input:focus {
+  color: #df5a4c;
+}
+
+.m-log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0 2px;
+  margin-top: 2px;
+}
+
+#m-stat-count {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.m-actions-main {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Pulsante Principale */
+.m-btn-auto {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 38px;
+  background: linear-gradient(135deg, #a33327, #731e17);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 13px;
+  box-shadow: 0 4px 12px rgba(163, 51, 39, 0.38);
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.m-btn-auto:hover {
+  background: linear-gradient(135deg, #b83d30, #85231b);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(163, 51, 39, 0.55);
+}
+
+.m-btn-auto.active {
+  background: linear-gradient(135deg, #a33327, #6e1913);
+  box-shadow: 0 4px 12px rgba(163, 51, 39, 0.4);
+}
+
+.m-btn-auto.active:hover {
+  background: linear-gradient(135deg, #b83d30, #801e17);
+}
+
+/* Pulsante Secondario (Pausa / Riprendi) identico per dimensione e allineamento */
+.m-btn-secondary {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 38px;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #f1f5f9;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.m-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.m-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 3px 2px;
+  user-select: none;
+}
+
+.m-toggle-text {
+  font-size: 11.5px;
+  color: #cbd5e1;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.m-switch {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.m-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.m-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #334155;
+  transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 20px;
+}
+
+.m-slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #ffffff;
+  transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+.m-switch input:checked + .m-slider {
+  background-color: #10b981;
+}
+
+.m-switch input:checked + .m-slider:before {
+  transform: translateX(16px);
+}
+
+.m-log {
+  height: 115px;
+  max-height: 115px;
+  overflow-y: scroll;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  box-sizing: border-box;
+}
+
+.m-log::-webkit-scrollbar {
+  width: 5px;
+}
+
+.m-log::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.m-log::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.m-log div {
+  flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 16px;
+  line-height: 16px;
+}
+
+.m-active-processing-target {
+  outline: 2.5px solid #a33327 !important;
+  box-shadow: 0 0 15px rgba(163, 51, 39, 0.5) !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Pulsante PayPal: Blu Originale */
+.m-footer-donate {
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.m-donate-btn {
+  width: 100%;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #0070ba, #003087);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 12.5px;
+  box-shadow: 0 4px 14px rgba(0, 112, 186, 0.4);
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.m-donate-btn:hover {
+  background: linear-gradient(135deg, #0086dd, #0045c4);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 112, 186, 0.6);
+  color: #ffffff;
+}
+
+.m-donate-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: #ffffff;
+  flex-shrink: 0;
+}

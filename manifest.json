@@ -1,0 +1,54 @@
+{
+  "manifest_version": 3,
+  "name": "UniDownloader",
+  "description": "Download automatico e organizzato delle dispense didattiche universitarie.",
+  "version": "2.4",
+  "permissions": [
+    "downloads",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "UniDownloader"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.multiversity.click/*",
+        "*://*.unimercatorum.it/*",
+        "*://*.unipegaso.it/*",
+        "*://*.sanraffaele.roma.it/*",
+        "*://*.uniroma5.it/*"
+      ],
+      "css": [
+        "style.css"
+      ],
+      "js": [
+        "utils.js",
+        "scrapers.js",
+        "ui.js",
+        "automation.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
